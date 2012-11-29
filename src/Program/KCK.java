@@ -4,7 +4,7 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 import Program.*;
 
-public class KCK {
+public class KCK2 {
 
     public static void main(String[] args) throws IOException {
         String[] database = new String[10000000];
