@@ -13,11 +13,10 @@ public class Analysis {
 
     public void DataAnalysis(String[] database, String person, String place) {
         int i = 0, found = 0, wordCount = 0, personCount = 0, upperWordCount = 0, verbCount = 0, placeCount = 0;
-        int[] personID = new int[10000000];
-        int[] UpperNameWordID = new int[10000000];
-        int[] verbID = new int[10000000];
-        int[] answerID = new int[10000000];
-        int[] placeID = new int[10000000];
+        int[] personID = new int[100000];
+        int[] UpperNameWordID = new int[100000];
+        int[] verbID = new int[100000];
+        int[] placeID = new int[100000];
 
         //------------!Wyszukuje miejsce w bazie
         while (database[i] != null) {
@@ -98,7 +97,8 @@ public class Analysis {
                 k = 0;
             }
             int l = UpperNameWordID[i] + 20;
-
+            
+            String zabojca = new String();
             while (k < l) {
                 if (found == 1) {
                     break;
@@ -106,10 +106,11 @@ public class Analysis {
                 if ((database[k].contains("przez") | database[k].contains("zabił") | database[k].contains("zamordował") | database[k].contains("postrzelił") | database[k].contains("zastrzelił") | database[k].contains("ukatrupił") | database[k].contains("usmiercił")) & (startsWithUpper(database[k + 1]) | startsWithUpper(database[k + 2]) | startsWithUpper(database[k + 3]) | startsWithUpper(database[k + 3]))) {
                     for (int r = 0; r < 5; r++) {
                         if (startsWithUpper(database[k + r])) {
-                            System.out.print(database[k + r] + " ");
+                            zabojca = zabojca + database[k + r] + " ";
                         }
                     }
                     found = 1;
+                    System.out.println("Zabojca to: " + zabojca.substring(0, zabojca.length()-1));
                     break;
                 }
                 k++;
@@ -119,6 +120,6 @@ public class Analysis {
         if (found == 0) {
             System.out.print("Nie znaleziono zabójcy w tekscie lub niezgadzają sie dane miejsca/osoby/zapytania");
         }
-        System.out.println("\n--------------------------");
+        System.out.println("--------------------------");
     }
 }

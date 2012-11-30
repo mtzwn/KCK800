@@ -26,9 +26,11 @@ public class FileMethods {
             if (fileDefault.exists() == false) {
                 fileName = FindFile();
             }
-            if (fileName.endsWith("null")) { JOptionPane.showMessageDialog(null, "Nie wybrano pliku danych do analizy. Kończenie programu.");
-                System.exit(0); }
-                System.out.println("| Wybrano plik:   " + fileName + '\n');
+            if (fileName.endsWith("null")) {
+                JOptionPane.showMessageDialog(null, "Nie wybrano pliku danych do analizy. Kończenie programu.");
+                System.exit(0);
+            }
+            System.out.println("| Wybrano plik:   " + fileName + '\n');
 
             int i = 0;
             Scanner input = new Scanner(new InputStreamReader(new FileInputStream(fileName), charset));

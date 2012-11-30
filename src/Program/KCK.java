@@ -8,13 +8,13 @@ public class KCK {
 
     public static void main(String[] args) throws IOException {
         System.out.println("Program wystartował.\n");
-        String[] database = new String[10000000];
+        String[] database = new String[1000000];
         Question q = new Question();
         Analysis a = new Analysis();
         FileMethods f = new FileMethods();
         String question = null;
 
-        //question = "Kto zabił Kennedy'ego w Dallas?";
+        question = "Kto zabił Kennedy'ego w Dallas?";
         //question = "Kto zabił Kennedy'ego w Los Angeles?";
         //question = "Kto zabił Narutowicza w Warszawie?";
         //question = "Kto zabił Narutowicza w Zachęcie?";

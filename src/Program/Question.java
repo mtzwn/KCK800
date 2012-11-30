@@ -49,7 +49,6 @@ public class Question {
 
             int j = i;
             Character sign;
-            System.out.println(questionToArray.toString().length());
             if (questionToArray[i] != '?') {
                 sign = questionToArray[j + 1];
                 if (Character.isUpperCase(sign)) {
