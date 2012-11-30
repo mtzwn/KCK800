@@ -1,15 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package Program;
 
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Dicas NTB
- */
 public class Question {
 
     public Question() {
@@ -46,9 +38,19 @@ public class Question {
         return person;
     }
 
-    public String GetPlace(String pytanie) {
-        String place = pytanie.substring(pytanie.lastIndexOf(" ") + 1);
+    public String GetPlace(String question) {
+        if (question.contains(" w ")) { 
+            char[] questionToArray;
+            questionToArray = question.toCharArray();
+            System.out.println(questionToArray[20]);
+            System.out.println(question.substring(question.indexOf(" w ")-10));
+            
+            return "test";
+        }
+        else {
+        String place = question.substring(question.lastIndexOf(" ") + 1);
         place = place.replace("?", "");
         return place;
+        }
     }
 }

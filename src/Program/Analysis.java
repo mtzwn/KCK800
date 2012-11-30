@@ -1,15 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package Program;
 
 import java.util.regex.Pattern;
 
-/**
- *
- * @author Dicas NTB
- */
 public class Analysis {
 
     public Analysis() {
@@ -43,6 +35,7 @@ public class Analysis {
             i++;
             licznikSlow++;
         }
+
         // System.out.println(i + " " + licznikSlowIKeyword);
         m = 0;
         /*

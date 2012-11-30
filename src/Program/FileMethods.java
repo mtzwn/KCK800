@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package Program;
 
 import java.awt.FileDialog;
@@ -14,11 +10,8 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.Scanner;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
-/**
- *
- * @author Dicas NTB
- */
 public class FileMethods {
 
     public FileMethods() {
@@ -33,6 +26,9 @@ public class FileMethods {
             if (fileDefault.exists() == false) {
                 fileName = FindFile();
             }
+            if (fileName.endsWith("null")) { JOptionPane.showMessageDialog(null, "Nie wybrano pliku danych do analizy. Kończenie programu.");
+                System.exit(0); }
+                System.out.println("| Wybrano plik:   " + fileName + '\n');
 
             int i = 0;
             Scanner input = new Scanner(new InputStreamReader(new FileInputStream(fileName), charset));
@@ -40,7 +36,6 @@ public class FileMethods {
                 database[i] = input.next().replace(",", "").replace("(", "").replace(")", "").replace(":", "").replace(";", "").replace("!", "").replace("?", "").replace("'", "");
                 i++;
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
