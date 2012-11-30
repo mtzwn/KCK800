@@ -13,8 +13,28 @@ public class KCK {
         Analysis a = new Analysis();
         FileMethods f = new FileMethods();
         String question = null;
-        
+
         question = "Kto zabił Kennedy'ego w Dallas?";
+        //question = "Kto zabił Kennedy'ego w Los Angeles?";
+        //question = "Kto zabił Narutowicza w Warszawie?";
+        //question = "Kto zabił Narutowicza w Zachęcie?";
+        //question = "Kto Kennedy'ego zabił w Dallas?";
+        //question = "Kto w Dallas zabił Kennedy'ego?";
+        //question = "Kto zamordował w Dallas Kennedy'ego?";
+        //question = "Kto uśmiercił Kennedy'ego w Dallas?";
+        //question = "Kto pozbawił życia Kennedy'ego w Dallas?";
+
+        // *
+        //question = "Kto zabił Kennedy'ego?";
+        //question = "Kto zabił Narutowicza w Dallas?";
+        //question = "Kto zabił Oswalda w Dallas?";
+        //question = "Kto zabił Niewiadomskiego w Zachęcie?";
+        //question = "Kto zabił Kennedy'ego u wybrzeża wyspy Martha's Vineyard?";
+        //question = "Kto zabił Kennedy'ego w Waszyngtonie?";
+
+        // **
+        //question = "Kto zabił?";
+        //question = "Kto zabił w Dallas?";
 
         if (question == null) {
             question = q.AskQuestion();
@@ -38,11 +58,14 @@ public class KCK {
             } else if (q.GetPerson(question) == null) {
                 JOptionPane.showMessageDialog(null, "Nie podano nazwiska, bądź nie odnaleziono.");
             } else {
-                System.out.println("| Miejscowość:    " + q.GetPlace(question));
-                System.out.println("| Wybrano osobę:  " + q.GetPerson(question));
+                String place = q.GetPlace(question);
+                String person = q.GetPerson(question);
+                System.out.println("| Pytanie:        " + question);
+                System.out.println("| Miejscowość:    " + place);
+                System.out.println("| Wybrano osobę:  " + person);
                 f.ReadData(database);
                 System.out.println("Zapisano dane do bazy tymczasowej.\nAnalizowanie danych w toku...");
-                a.DataAnalysis(database, q.GetPerson(question), q.GetPlace(question));
+                a.DataAnalysis(database, person, place);
             }
         }
     }

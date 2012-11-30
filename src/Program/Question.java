@@ -13,7 +13,7 @@ public class Question {
     }
 
     public boolean QuestionAnalysis(String question) {
-        if (question != null && (question.startsWith("Kto") | question.startsWith("kto")) & question.endsWith("?") & (question.contains("zabi") | question.contains("zamordowa") | question.contains("postrze") | question.contains("zastrzel") | question.contains("ukatrupi") | question.contains("usmierci"))) {
+        if (question != null && (question.startsWith("Kto") | question.startsWith("kto")) & question.endsWith("?") & (question.contains("zabi") | question.contains("zamordowa") | question.contains("postrze") | question.contains("zastrzel") | question.contains("ukatrupi") | question.contains("usmierci") | question.contains("pozbawił") | question.contains("uśmierci") | question.contains("pozbawi"))) {
             return true;
         } else {
             return false;
@@ -39,18 +39,41 @@ public class Question {
     }
 
     public String GetPlace(String question) {
-        if (question.contains(" w ")) { 
-            char[] questionToArray;
-            questionToArray = question.toCharArray();
-            System.out.println(questionToArray[20]);
-            System.out.println(question.substring(question.indexOf(" w ")-10));
-            
-            return "test";
-        }
-        else {
-        String place = question.substring(question.lastIndexOf(" ") + 1);
-        place = place.replace("?", "");
-        return place;
+        if (question.contains(" w ")) {
+            char[] questionToArray = question.toCharArray();
+            int i = question.indexOf(" w ") + 3;
+
+            while (questionToArray[i] != ' ' && questionToArray[i] != '?') {
+                i++;
+            }
+
+            int j = i;
+            Character sign;
+            System.out.println(questionToArray.toString().length());
+            if (questionToArray[i] != '?') {
+                sign = questionToArray[j + 1];
+                if (Character.isUpperCase(sign)) {
+                    j++;
+                }
+            }
+
+            while (questionToArray[j] != ' ' && questionToArray[j] != '?') {
+                j++;
+            }
+
+            if ((question.substring(question.indexOf(" w ") + 3, j)).contains(GetPerson(question))) {
+                return question.substring(question.indexOf(" w ") + 3, i);
+            }
+
+            return question.substring(question.indexOf(" w ") + 3, j);
+        } else {
+            String place = question.substring(question.lastIndexOf(" ") + 1);
+            place = place.replace("?", "");
+            if (place.contains(GetPerson(question))) {
+                JOptionPane.showMessageDialog(null, "Nie podano nazwiska, bądź nie odnaleziono. Kończenie programu.");
+                System.exit(0);
+            }
+            return place;
         }
     }
 }
