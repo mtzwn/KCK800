@@ -14,7 +14,7 @@ public class KCK {
         FileMethods f = new FileMethods();
         String question = null;
 
-        question = "Kto zabił Kennedy'ego w Dallas?";
+        //question = "Kto zabił Kennedy'ego w Dallas?";
         //question = "Kto zabił Kennedy'ego w Los Angeles?";
         //question = "Kto zabił Narutowicza w Warszawie?";
         //question = "Kto zabił Narutowicza w Zachęcie?";
