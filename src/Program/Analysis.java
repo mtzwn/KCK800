@@ -110,8 +110,8 @@ public class Analysis {
                         }
                     }
                     found = 1;
-                    System.out.println("Zabojca to: " + zabojca.substring(0, zabojca.length()-1));
-                    break;
+                    if (zabojca.contains(person)) { found=0; break; }
+                    else { System.out.print("Zabojca to: " + zabojca.substring(0, zabojca.length()-1)); break; }
                 }
                 k++;
             }
@@ -120,6 +120,7 @@ public class Analysis {
         if (found == 0) {
             System.out.print("Nie znaleziono zabójcy w tekscie lub niezgadzają sie dane miejsca/osoby/zapytania");
         }
-        System.out.println("--------------------------");
+        //System.out.println("\nPodstawy odpowiedzi: ");
+        System.out.print("\n--------------------------\n");
     }
 }
