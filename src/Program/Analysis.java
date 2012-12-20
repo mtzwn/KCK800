@@ -37,8 +37,8 @@ public class Analysis {
                 k = 0;
             }
             int l = placeID[i] + 20;
-
-            while (k < l) {
+            System.out.println("k = " + k + " l = " + l);
+            while (k < l && k < wordCount) {
                 if (database[k].contains(person)) {
                     personID[personCount] = k;
                     personCount++;
