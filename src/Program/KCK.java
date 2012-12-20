@@ -28,19 +28,17 @@ public class KCK {
         //question = "Kto zabił Kennedy'ego?";
         //question = "Kto zabił Narutowicza w Dallas?";
         //question = "Kto zabił Oswalda w Dallas?";
-        question = "Kto zabił w Los Angeles Niewiadomskiego?";
+         
+        
+        question = "Kto zabił Niewiadomskiego w Nowym Jorku?";
         //question = "Kto zabił Kennedy'ego u wybrzeża wyspy Martha's Vineyard?";
         //question = "Kto zabił Kennedy'ego w Waszyngtonie?";
 
         // **
         //question = "Kto zabił?";
         //question = "Kto zabił w Dallas?";
-        
-        q.FindPlaceByKey(question);
-        
-
-        /*
-         if (question == null) {
+         
+          if (question == null) {
          question = q.AskQuestion();
          }
 
@@ -56,14 +54,16 @@ public class KCK {
          System.exit(0);
          }
          }
+         String place = q.FindPlaceByKey(question);
+         String person = q.FindPersonByKey(question, place);
+         System.out.println(place + "  " +person);
          if (q.QuestionAnalysis(question) == false && question == null) {
          JOptionPane.showMessageDialog(null, "Nie podano pytania. Kończenie programu.");
          System.exit(0);
-         } else if (q.GetPerson(question) == null) {
+         
+         } else if (person == null) {
          JOptionPane.showMessageDialog(null, "Nie podano nazwiska, bądź nie odnaleziono.");
          } else {
-         String place = q.GetPlace(question);
-         String person = q.GetPerson(question);
          System.out.println("| Pytanie:        " + question);
          System.out.println("| Miejscowość:    " + place);
          System.out.println("| Wybrano osobę:  " + person);
@@ -71,6 +71,6 @@ public class KCK {
          System.out.println("Zapisano dane do bazy tymczasowej.\nAnalizowanie danych w toku...");
          a.DataAnalysis(database, person, place);
          }
-         }*/
+         }
     }
 }
