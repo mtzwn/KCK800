@@ -13,7 +13,7 @@ public class Analysis {
     }
 
     public void DataAnalysis(String[] database, String person, String place, ShowText console) {
-        int i = 0, found = 0, wordCount = 0, personCount = 0, upperWordCount = 0, verbCount = 0, placeCount = 0;
+        int i = 0, found = 0, wordCount = 0, personCount = 0, upperWordCount = 0, verbCount = 0, placeCount = 0,l = 0;
         int[] personID = new int[100000];
         int[] UpperNameWordID = new int[100000];
         int[] verbID = new int[100000];
@@ -33,13 +33,12 @@ public class Analysis {
 
         //------------!Wyszukuje osobe zabita w bazie
         i = 0;
-        while (i < placeCount) {
+        while (i < placeCount & i < wordCount) {
             int k = placeID[i] - 20;
             if (k < 0) {
                 k = 0;
             }
-            int l = placeID[i] + 20;
-            console.sendMsg("k = " + k + " l = " + l);
+            if(placeID[i] + 20 < wordCount) {l = placeID[i] + 20; }
             while (k < l && k < wordCount) {
                 if (database[k].contains(person)) {
                     personID[personCount] = k;
@@ -58,9 +57,9 @@ public class Analysis {
             if (k < 0) {
                 k = 0;
             }
-            int l = personID[i] + 20;
+            l = personID[i] + 20;
 
-            while (k <= l) {
+            while (k <= l & k < wordCount) {
                 if (database[k].contains("zabi") | database[k].contains("zamordowa") | database[k].contains("zastrzel") | database[k].contains("postrzel") | database[k].contains("ukatrupi") | database[k].contains("usmierci") | database[k].contains("zabój") | database[k].contains("morder") | database[k].contains("przestęp") | database[k].contains("bandyt") | database[k].contains("terrory") | database[k].contains("Zabi") | database[k].contains("Zamordowa") | database[k].contains("Zastrzel") | database[k].contains("Ukatrupi") | database[k].contains("Usmierci") | database[k].contains("Zabój") | database[k].contains("Morder") | database[k].contains("Przestęp") | database[k].contains("Bandyt") | database[k].contains("Terrory")) {
                     verbID[verbCount] = k;
                     verbCount++;
@@ -78,7 +77,7 @@ public class Analysis {
             if (k < 0) {
                 k = 0;
             }
-            int l = verbID[i] + 20;
+            l = verbID[i] + 20;
             while (k < l) {
                 if (startsWithUpper(database[k])) {
                     UpperNameWordID[upperWordCount] = k;
@@ -98,15 +97,16 @@ public class Analysis {
             if (k < 0) {
                 k = 0;
             }
-            int l = UpperNameWordID[i] + 20;
+            l = UpperNameWordID[i] + 20;
 
             String zabojca = new String();
-            while (k < l) {
+            while (k < l & k < wordCount) {
                 if (found == 1) {
                     break;
                 }
                 if ((database[k].contains("przez") | database[k].contains("zabił") | database[k].contains("zamordował") | database[k].contains("postrzelił") | database[k].contains("zastrzelił") | database[k].contains("ukatrupił") | database[k].contains("usmiercił")) & (startsWithUpper(database[k + 1]) | startsWithUpper(database[k + 2]) | startsWithUpper(database[k + 3]) | startsWithUpper(database[k + 3]))) {
                     for (int r = 0; r < 5; r++) {
+                        if(k+r > wordCount) { break; } 
                         if (startsWithUpper(database[k + r])) {
                             zabojca = zabojca + database[k + r] + " ";
                         }
@@ -116,7 +116,7 @@ public class Analysis {
                         found = 0;
                         break;
                     } else {
-                         console.sendMsg("Zabójca to: " + zabojca.substring(0, zabojca.length() - 1));
+                        console.sendMsg("Zabójca to: " + zabojca.substring(0, zabojca.length() - 1));
                         break;
                     }
                 }
@@ -125,9 +125,9 @@ public class Analysis {
             i++;
         }
         if (found == 0) {
-             console.sendMsg("Nie znaleziono zabójcy w tekscie lub nie zgadzają się dane miejsca/osoby/zapytania");
+            console.sendMsg("Nie znaleziono zabójcy w tekscie lub nie zgadzają się dane miejsca/osoby/zapytania");
         }
         // console.sendMsg("\nPodstawy odpowiedzi: ");
-         console.sendMsg("--------------------------");
+        console.sendMsg("--------------------------");
     }
 }
