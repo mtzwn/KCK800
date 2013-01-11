@@ -1,6 +1,7 @@
 package Program;
 
 import java.util.regex.Pattern;
+import javax.swing.JTextArea;
 
 public class Analysis {
 
@@ -11,7 +12,7 @@ public class Analysis {
         return Pattern.compile("^[A-Z]").matcher(s).find();
     }
 
-    public void DataAnalysis(String[] database, String person, String place) {
+    public void DataAnalysis(String[] database, String person, String place, ShowText console) {
         int i = 0, found = 0, wordCount = 0, personCount = 0, upperWordCount = 0, verbCount = 0, placeCount = 0;
         int[] personID = new int[100000];
         int[] UpperNameWordID = new int[100000];
@@ -27,7 +28,8 @@ public class Analysis {
             wordCount++;
             i++;
         }
-        System.out.println("\nBaza liczy " + wordCount + " słowa.\nZnaleziono " + placeCount + " miejscowości pasujących w tekście.");
+
+        console.sendMsg("\nBaza liczy " + wordCount + " słowa.\nZnaleziono " + placeCount + " miejscowości pasujących w tekście.");
 
         //------------!Wyszukuje osobe zabita w bazie
         i = 0;
@@ -37,7 +39,7 @@ public class Analysis {
                 k = 0;
             }
             int l = placeID[i] + 20;
-            System.out.println("k = " + k + " l = " + l);
+            console.sendMsg("k = " + k + " l = " + l);
             while (k < l && k < wordCount) {
                 if (database[k].contains(person)) {
                     personID[personCount] = k;
@@ -47,7 +49,7 @@ public class Analysis {
             }
             i++;
         }
-        System.out.println("Znaleziono " + personCount + " ofiar w tekście na podstawie miejscowości.");
+        console.sendMsg("Znaleziono " + personCount + " ofiar w tekście na podstawie miejscowości.");
 
         //------------! Wyszukuje czasownika związanego z zabójstwem
         i = 0;
@@ -67,7 +69,7 @@ public class Analysis {
             }
             i++;
         }
-        System.out.println("Znaleziono " + verbCount + " czasowników w tekście na podstawie miejscowości oraz ofiary.");
+        console.sendMsg("Znaleziono " + verbCount + " czasowników w tekście na podstawie miejscowości oraz ofiary.");
 
         //------------! Wyszukuje wyrazów zaczynających się z wielkich liter
         i = 0;
@@ -86,8 +88,8 @@ public class Analysis {
             }
             i++;
         }
-        System.out.println("Znaleziono " + upperWordCount + " wyrazów w tekście zaczynających się wielką literą na podstawie miejscowości, ofiary i czasownika.");
-        System.out.println("--------------------------");
+        console.sendMsg("Znaleziono " + upperWordCount + " wyrazów w tekście zaczynających się wielką literą na podstawie miejscowości, ofiary i czasownika.");
+        console.sendMsg("--------------------------");
 
         ////------------! Wyszukuje odpowiedzi na podstawie powyższych warunków
         i = 0;
@@ -97,7 +99,7 @@ public class Analysis {
                 k = 0;
             }
             int l = UpperNameWordID[i] + 20;
-            
+
             String zabojca = new String();
             while (k < l) {
                 if (found == 1) {
@@ -110,17 +112,22 @@ public class Analysis {
                         }
                     }
                     found = 1;
-                    if (zabojca.contains(person)) { found=0; break; }
-                    else { System.out.print("Zabojca to: " + zabojca.substring(0, zabojca.length()-1)); break; }
+                    if (zabojca.contains(person)) {
+                        found = 0;
+                        break;
+                    } else {
+                         console.sendMsg("Zabojca to: " + zabojca.substring(0, zabojca.length() - 1));
+                        break;
+                    }
                 }
                 k++;
             }
             i++;
         }
         if (found == 0) {
-            System.out.print("Nie znaleziono zabójcy w tekscie lub niezgadzają sie dane miejsca/osoby/zapytania");
+             console.sendMsg("Nie znaleziono zabójcy w tekscie lub niezgadzają sie dane miejsca/osoby/zapytania");
         }
-        //System.out.println("\nPodstawy odpowiedzi: ");
-        System.out.print("\n--------------------------\n");
+        // console.sendMsg("\nPodstawy odpowiedzi: ");
+         console.sendMsg("--------------------------");
     }
 }

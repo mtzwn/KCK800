@@ -17,7 +17,7 @@ public class FileMethods {
     public FileMethods() {
     }
 
-    public void ReadData(String[] database) throws FileNotFoundException {
+    public void ReadData(String[] database, ShowText console) throws FileNotFoundException {
 
         try {
             Charset charset = Charset.forName("cp1250");
@@ -30,7 +30,7 @@ public class FileMethods {
                 JOptionPane.showMessageDialog(null, "Nie wybrano pliku danych do analizy. Kończenie programu.");
                 System.exit(0);
             }
-            System.out.println("| Wybrano plik:   " + fileName + '\n');
+            console.sendMsg("| Wybrano plik:   " + fileName + '\n');
 
             int i = 0;
             Scanner input = new Scanner(new InputStreamReader(new FileInputStream(fileName), charset));
