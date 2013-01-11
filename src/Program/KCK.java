@@ -30,7 +30,7 @@ public class KCK {
         //question = "Kto zabił Oswalda w Dallas?";
          
         
-        question = "Kto zabił Niewiadomskiego w Nowym Jorku?";
+        //question = "Kto zabił Niewiadomskiego w Nowym Jorku?";
         //question = "Kto zabił Kennedy'ego u wybrzeża wyspy Martha's Vineyard?";
         //question = "Kto zabił Kennedy'ego w Waszyngtonie?";
 
