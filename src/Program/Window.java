@@ -169,12 +169,12 @@ public class Window extends javax.swing.JFrame {
                         console.sendMsg("| Miejscowość:    " + place);
                         console.sendMsg("| Wybrano osobę:  " + person);
                         try {
-                            f.ReadData(database,console);
+                            f.ReadData(database, console);
                         } catch (FileNotFoundException ex) {
                             Logger.getLogger(Window.class.getName()).log(Level.SEVERE, null, ex);
                         }
                         console.sendMsg("Zapisano dane do bazy tymczasowej.\nAnalizowanie danych w toku...");
-                        a.DataAnalysis(database, person, place,console);
+                        a.DataAnalysis(database, person, place, console);
 
                     }
                 }

@@ -13,7 +13,7 @@ public class Analysis {
     }
 
     public void DataAnalysis(String[] database, String person, String place, ShowText console) {
-        int i = 0, found = 0, wordCount = 0, personCount = 0, upperWordCount = 0, verbCount = 0, placeCount = 0,l = 0;
+        int i = 0, found = 0, wordCount = 0, personCount = 0, upperWordCount = 0, verbCount = 0, placeCount = 0, l = 0;
         int[] personID = new int[100000];
         int[] UpperNameWordID = new int[100000];
         int[] verbID = new int[100000];
@@ -38,7 +38,9 @@ public class Analysis {
             if (k < 0) {
                 k = 0;
             }
-            if(placeID[i] + 20 < wordCount) {l = placeID[i] + 20; }
+            if (placeID[i] + 20 < wordCount) {
+                l = placeID[i] + 20;
+            }
             while (k < l && k < wordCount) {
                 if (database[k].contains(person)) {
                     personID[personCount] = k;
@@ -106,7 +108,9 @@ public class Analysis {
                 }
                 if ((database[k].contains("przez") | database[k].contains("zabił") | database[k].contains("zamordował") | database[k].contains("postrzelił") | database[k].contains("zastrzelił") | database[k].contains("ukatrupił") | database[k].contains("usmiercił")) & (startsWithUpper(database[k + 1]) | startsWithUpper(database[k + 2]) | startsWithUpper(database[k + 3]) | startsWithUpper(database[k + 3]))) {
                     for (int r = 0; r < 5; r++) {
-                        if(k+r > wordCount) { break; } 
+                        if (k + r > wordCount) {
+                            break;
+                        }
                         if (startsWithUpper(database[k + r])) {
                             zabojca = zabojca + database[k + r] + " ";
                         }
