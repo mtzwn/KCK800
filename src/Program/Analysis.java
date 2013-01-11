@@ -116,7 +116,7 @@ public class Analysis {
                         found = 0;
                         break;
                     } else {
-                         console.sendMsg("Zabojca to: " + zabojca.substring(0, zabojca.length() - 1));
+                         console.sendMsg("Zabójca to: " + zabojca.substring(0, zabojca.length() - 1));
                         break;
                     }
                 }
@@ -125,7 +125,7 @@ public class Analysis {
             i++;
         }
         if (found == 0) {
-             console.sendMsg("Nie znaleziono zabójcy w tekscie lub niezgadzają sie dane miejsca/osoby/zapytania");
+             console.sendMsg("Nie znaleziono zabójcy w tekscie lub nie zgadzają się dane miejsca/osoby/zapytania");
         }
         // console.sendMsg("\nPodstawy odpowiedzi: ");
          console.sendMsg("--------------------------");
